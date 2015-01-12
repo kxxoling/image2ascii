@@ -21,9 +21,11 @@ width: 10px;
     for h in xrange(height):
         ascii_html += '<div class="line">'
         for w in xrange(width):
-            pixel = pixels[w, h]
-            ascii_char = ASCII_PIXELS[int(sum(pixel) / 3.0 / 256.0 * 16)]
-            ascii_html += '<span class="char" style="color: rgba%s">%s</span>' % (pixel, ascii_char)
+            pixel = list(pixels[w, h])
+            if len(pixel) == 3:
+                pixel.append(1)
+            ascii_char = ASCII_PIXELS[int(sum(pixel[:3]) / 3.0 / 256.0 * 16)]
+            ascii_html += '<span class="char" style="color: rgba%s">%s</span>' % (tuple(pixel), ascii_char)
 
         ascii_html += '</div>\n'
     ascii_html += '</body></html>'
@@ -32,5 +34,5 @@ width: 10px;
 
 
 if __name__ == '__main__':
-    len = Image.open('chooser_sa.png')
-    print convert_image_to_ascii(len)
+    img = Image.open('sa.png')
+    print convert_image_to_ascii(img)
