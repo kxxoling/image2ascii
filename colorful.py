@@ -10,9 +10,10 @@ def convert_image_to_ascii(img):
 display: inline-block;
 height: 10px;
 width: 10px;
+font-size: 10px;
 }</style></head><body>'''
     orig_width, orig_height = img.size
-    width = 50
+    width = 150
     height = width * orig_height / orig_width
 
     img = img.resize((width, height))
@@ -34,5 +35,5 @@ width: 10px;
 
 
 if __name__ == '__main__':
-    img = Image.open('sa.png')
+    img = Image.open('meiling.jpg')
     print convert_image_to_ascii(img)
