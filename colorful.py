@@ -4,6 +4,7 @@ from PIL import Image
 
 ASCII_PIXELS = "MNHQ$OC?7>!:-;. "
 
+
 def convert_image_to_ascii(img):
     ascii_html = '''
 <html><head><style>span.char {
@@ -35,5 +36,8 @@ font-size: 10px;
 
 
 if __name__ == '__main__':
-    img = Image.open('meiling.jpg')
-    print convert_image_to_ascii(img)
+    img_name = 'meiling.jpg'
+    img = Image.open(img_name)
+    file_name = img_name.rsplit('.')[0]
+    with open(file_name+'.html', 'w+') as target_file:
+        target_file.write(convert_image_to_ascii(img))
